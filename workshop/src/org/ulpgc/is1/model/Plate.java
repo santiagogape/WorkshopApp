@@ -1,12 +1,15 @@
 package org.ulpgc.is1.model;
 
+import java.util.Objects;
+
 public class Plate {
     private String number;
 
     public Plate(String number) {
-        if(isValidPlate(number)) {
+        if(isValid(number)) {
             this.number = number;
         } else {
+            System.out.println("El numero no es válido.");
             this.number = "XXXX";
         }
     }
@@ -16,14 +19,15 @@ public class Plate {
     }
 
     public void setNumber(String number) {
-        if(isValidPlate(number)) {
+        if(isValid(number)) {
             this.number = number;
         } else {
+            System.out.println("El numero no es válido.");
             this.number = "XXXX";
         }
     }
 
-    public boolean isValidPlate(String number){
+    public boolean isValid(String number){
         if(number.matches("\\d{4} [A-Za-z]{3}")){
             return true;
         } else {
@@ -33,6 +37,21 @@ public class Plate {
 
     @Override
     public String toString() {
-        return '\'' + number;
+        return "Plate{" +
+                "number='" + number + '\'' +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Plate plate = (Plate) obj;
+        return Objects.equals(number, plate.number);
     }
 }
