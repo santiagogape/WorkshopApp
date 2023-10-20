@@ -21,7 +21,12 @@ public class Phone {
     }
 
     public void setNumber(String number) {
-        this.number = number;
+        if (isValid(number)){
+            this.number = number;
+        } else {
+            System.out.println("Phone number is not valid, the number will be XXXX");
+            this.number = "XXXX";
+        }
     }
 
     @Override
