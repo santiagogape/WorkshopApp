@@ -9,9 +9,9 @@ public class Customer {
 
     private List<Vehicle> vehiclesList;
 
-    public Customer(String name, String phone) {
+    public Customer(String name, Phone phone) {
         this.name = name;
-        this.phone = new Phone(phone);
+        this.phone = phone;
         this.vehiclesList = new ArrayList<>();
     }
 
@@ -67,7 +67,6 @@ public class Customer {
         return "Customer{" +
                 "name='" + name + '\'' +
                 ", phone=" + phone +
-                ", vehiclesList=" + vehiclesList +
                 '}';
     }
 }
