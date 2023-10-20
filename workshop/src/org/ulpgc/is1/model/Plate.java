@@ -4,12 +4,11 @@ public class Plate {
     private String number;
 
     public Plate(String number) {
-        if(isValidPlate(number)){
+        if(isValidPlate(number)) {
             this.number = number;
         } else {
             this.number = "XXXX";
         }
-
     }
 
     public String getNumber() {
@@ -17,25 +16,23 @@ public class Plate {
     }
 
     public void setNumber(String number) {
-        if (isValidPlate(number)) {
+        if(isValidPlate(number)) {
             this.number = number;
         } else {
             this.number = "XXXX";
         }
-
     }
-        public boolean isValidPlate(String number){
-            if (number.matches("\\d{4} [A-Za-z]{3}")) {
-                return true;
-            } else {
-                return false;
-            }
+
+    public boolean isValidPlate(String number){
+        if(number.matches("\\d{4} [A-Za-z]{3}")){
+            return true;
+        } else {
+            return false;
         }
+    }
 
     @Override
     public String toString() {
-        return "Plate{" +
-                "number='" + number + '\'' +
-                '}';
+        return '\'' + number;
     }
 }
