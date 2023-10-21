@@ -1,5 +1,7 @@
 package org.ulpgc.is1.model;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Vehicle {
@@ -7,13 +9,20 @@ public class Vehicle {
     private String model;
     private Plate plate;
     private Customer owner;
+    private List<Repair> repairsList; //si no tiene esto, no hay foma de axeder a Repair desde el Manager,
+    //no esta añadida en mechanic puesto que es mas facil el acceso desde el vehicle
+
+
 
     public Vehicle(String make, String model, Plate plate, Customer owner) {
         this.make = make;
         this.model = model;
         this.plate = plate;
         this.owner = owner;
+        this.repairsList = new ArrayList<>();
     }
+
+
 
     public String getMake() {
         return make;
@@ -45,6 +54,13 @@ public class Vehicle {
 
     public void setOwner(Customer owner) {
         this.owner = owner;
+    }
+
+    public Repair getRepair(int i){
+        return repairsList.get(i);
+    }
+    public void addRepair(Repair repair){
+        repairsList.add(repair);
     }
 
     @Override
