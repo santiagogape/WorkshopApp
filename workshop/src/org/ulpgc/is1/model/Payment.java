@@ -1,22 +1,23 @@
 package org.ulpgc.is1.model;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
 public class Payment {
 
-    private Date date;
+    private LocalDateTime date;
     private int amount;
 
-    public Payment(Date date, int amount) {
-        this.date = date;
+    public Payment(int amount) {
+        this.date = LocalDateTime.now();
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

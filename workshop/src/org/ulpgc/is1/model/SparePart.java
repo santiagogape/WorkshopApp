@@ -11,8 +11,6 @@ public class SparePart {
         this.price = price;
     }
 
-
-
     public String getName() {
         return name;
     }
