@@ -24,6 +24,37 @@ public class Main {
         rp.removeVehicle(vehicle2);
         System.out.println(rp.getVehicleCount());
         System.out.println(repairVehicle2);
+
+        //comprobacion de errores y repeticiones
+        rp.addVehicle("made in japan", "apple16", new Plate("1234 ABC"),
+                new Customer("kata",new Phone("640758329")));
+        rp.addVehicle("made in paris", "chata", new Plate("4567 ABC"),
+                new Customer("ramarta",new Phone("123456789")));
+        rp.addMechanic("shuli", "sharama");
+        rp.addMechanic("patata", "malaka");
+        rp.addSparePart("caja", 25);    //es que es de titanio
+        rp.addSparePart("puerta", 500);
+
+
+        System.out.println(rp.getVehicleCount());
+        System.out.println(rp.getVehiclesList());
+        System.out.println(rp.getMechanicsList());
+        System.out.println(rp.getSparePartsList());
+
+        vehicle2 = rp.getVehicle(1);
+        Mechanic mechanic2 = rp.getMechanic(1);
+        Mechanic mechanic3 = rp.getMechanic(2);
+        List<SparePart> moreParts = rp.getSparePartsList().subList(0,3);
+        System.out.println(moreParts);
+        SparePart part = rp.getSparePart(3);
+        System.out.println(part);
+
+
+        rp.repair("reparacion en el nuevo vehicle2 de 3 items por mechani2 del tipo Mechanical y Electrical",
+                4, vehicle2, Arrays.asList(mechanic2), moreParts,
+                Arrays.asList(30,1,2), Arrays.asList(BreakdownTypes.mechanical, BreakdownTypes.electrical));
+        System.out.println(vehicle2.getRepair(0));
+
     }
 
     public static void init(RepairManager rp){

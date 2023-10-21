@@ -83,10 +83,25 @@ public class Repair {
             mechanicsList.add(mechanic);
         }
     }
+
+    public void addMechanic(List<Mechanic> mechanics){
+        if (mechanicsList.isEmpty()){
+            mechanicsList = mechanics;
+            return;
+        } else {
+            for (Mechanic i: mechanics){
+                this.addMechanic(i);
+            }
+        }
+    }
+
+    public void addItem(SparePart part, int quantity){
+        this.addItem(new Item(quantity, this, part));
+    }
     public void addItem(Item item){
         if (itemsList.isEmpty()){
             itemsList.add(item);
-            debt += item.getQuantity()*item.getSparePart().getPrice();
+            this.getDebt();
             return;
         }
         boolean b = false;
