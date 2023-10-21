@@ -96,6 +96,8 @@ public class Repair {
         }
     }
 
+    /* NO HACE FALTA: aunque se borre un vehiculo del repairManager, quedaria en el "historial" del mecanico y la pieza
+    por lo que como tal, no se va a borrar elementos de una instancia de Repair
     //remober elementos
     public void removeMechanic(Mechanic mechanic){
         mechanicsList.remove(mechanic);
@@ -106,7 +108,22 @@ public class Repair {
     public void removeBreakDownType(BreakdownTypes types){
         breakdownTypesList.remove(types);
     }
-    //TODO correccion en clases asociadas de los remove
-    //TODO toString()
+     */
 
+    @Override
+    public String toString() {
+        return "Repair{" +
+                "id=" + id +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                ", effort=" + effort +
+                ", vehicle=" + vehicle +
+                ", mechanicsList=" + mechanicsList +
+                ", itemsList=" + itemsList +
+                ", breakdownTypesList=" + breakdownTypesList +
+                ", payment=" + payment +
+                '}';
+        //item tiene un atributo Repair. En el toString(),
+        // solo llama el Repair.Id, para evitar problemas
+    }
 }

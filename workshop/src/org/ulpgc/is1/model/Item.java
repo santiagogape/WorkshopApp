@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Item {
     private int quantity;
-    private Repair repair;
+    private final Repair repair;
     private SparePart sparePart;
     public Item(int quantity, Repair repair, SparePart sparepart) {
         this.quantity = quantity;
@@ -36,7 +36,7 @@ public class Item {
     public String toString() {
         return "Item{" +
                 "quantity=" + quantity +
-                ", repair=" + repair +
+                ", repair ID=" + repair.getId() +
                 ", sparePart= " + sparePart +
                 '}';
     }
