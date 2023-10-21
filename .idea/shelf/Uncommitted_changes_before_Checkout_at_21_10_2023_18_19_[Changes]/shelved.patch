@@ -1,0 +1,17 @@
+Index: workshop/src/org/ulpgc/is1/model/Vehicle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.ulpgc.is1.model;\r\n\r\nimport java.util.Objects;\r\n\r\npublic class Vehicle {\r\n    private String make;\r\n    private String model;\r\n    private Plate plate;\r\n    private Customer owner;\r\n\r\n    public Vehicle(String make, String model, Plate plate, Customer owner) {\r\n        this.make = make;\r\n        this.model = model;\r\n        this.plate = plate;\r\n        this.owner = owner;\r\n    }\r\n\r\n    public String getMake() {\r\n        return make;\r\n    }\r\n\r\n    public void setMake(String make) {\r\n        this.make = make;\r\n    }\r\n\r\n    public String getModel() {\r\n        return model;\r\n    }\r\n\r\n    public void setModel(String model) {\r\n        this.model = model;\r\n    }\r\n\r\n    public Plate getPlate() {\r\n        return plate;\r\n    }\r\n\r\n    public void setPlate(Plate plate) {\r\n        this.plate = plate;\r\n    }\r\n\r\n    public Customer getOwner() {\r\n        return owner;\r\n    }\r\n\r\n    public void setOwner(Customer owner) {\r\n        this.owner = owner;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) return true;\r\n        if (o == null || getClass() != o.getClass()) return false;\r\n        Vehicle vehicle = (Vehicle) o;\r\n        return Objects.equals(make, vehicle.make) &&\r\n                Objects.equals(model, vehicle.model) &&\r\n                Objects.equals(plate, vehicle.plate);\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return Objects.hash(make, model, plate);\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"Vehicle{\" +\r\n                \"make='\" + make + '\\'' +\r\n                \", model='\" + model + '\\'' +\r\n                \", plate=\" + plate +\r\n                \", owner=\" + owner +\r\n                '}';\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/workshop/src/org/ulpgc/is1/model/Vehicle.java b/workshop/src/org/ulpgc/is1/model/Vehicle.java
+--- a/workshop/src/org/ulpgc/is1/model/Vehicle.java	
++++ b/workshop/src/org/ulpgc/is1/model/Vehicle.java	
+@@ -71,4 +71,6 @@
+                 ", owner=" + owner +
+                 '}';
+     }
++
++
+ }

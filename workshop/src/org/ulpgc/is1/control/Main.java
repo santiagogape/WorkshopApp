@@ -9,6 +9,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
         RepairManager rp = new RepairManager();
         init(rp);
         Mechanic mechanic1 = rp.getMechanic(0);
