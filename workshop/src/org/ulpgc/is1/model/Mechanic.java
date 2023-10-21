@@ -7,7 +7,6 @@ public class Mechanic {
     private String surname;
 
 
-
     public Mechanic(String name, String surname) {
         this.name = name;
         this.surname = surname;

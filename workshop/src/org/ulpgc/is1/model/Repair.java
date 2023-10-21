@@ -1,6 +1,8 @@
 package org.ulpgc.is1.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Repair {
@@ -16,16 +18,21 @@ public class Repair {
     private Payment payment;
     private int debt = 0;
 
-    public Repair(int id, String description, int effort, Vehicle vehicle,
-                  List<Mechanic> mechanicsList, List<Item> itemsList, List<BreakdownTypes> breakdownTypesList) {
-        this.id = id;
+    public Repair(String description, int effort, Vehicle vehicle,
+                  List<Mechanic> mechanicsList, List<SparePart> sparePartList,
+                   List<Integer> quantities, List<BreakdownTypes> breakdownTypesList) {
+        this.id = NEXT_ID++;
         this.date = LocalDateTime.now();
         this.description = description;
         this.effort = effort;
-        this.itemsList = itemsList;
+        this.itemsList = new ArrayList<>();
+        this.addItem(sparePartList,quantities); //inicializa items list
+        this.mechanicsList = new ArrayList<>();
         this.mechanicsList = mechanicsList;
         this.vehicle = vehicle;
+        vehicle.addRepair(this);
         this.payment = payment;
+        this.breakdownTypesList = new ArrayList<>();
         this.breakdownTypesList = breakdownTypesList;
         this.getDebt(); //inicializa la deuda
     }
@@ -44,16 +51,20 @@ public class Repair {
     //pago
     public void pay(int amount){
         payment = new Payment(amount);
-
+        debt -= amount;
+        System.out.println("debe " + debt+ "€");
     }
 
     //deuda
     private void getDebt(){
+        if(!(debt == 0)){
+            return;
+        }
         for (int i = 0; i<itemsList.size();i++){
             debt += itemsList.get(i).getQuantity() * itemsList.get(i).getSparePart().getPrice();
         }
     }
-    public int price(){return debt;}
+    public String price(){return debt + "€";}
 
     //añadir elementos
     public void addMechanic(Mechanic mechanic){
@@ -90,6 +101,21 @@ public class Repair {
             debt += item.getQuantity()*item.getSparePart().getPrice();
         }
     }
+    public void addItem(List<SparePart> parts, List<Integer> quantities){
+        List<Item> items = new ArrayList<>();
+        for (int i = 0; i<parts.size();i++){
+            items.add(new Item(quantities.get(i), this, parts.get(i)));
+        }
+        if (itemsList.isEmpty()){
+            itemsList = items;
+            this.getDebt();
+            return;
+        } else {
+            for (Item i: items){
+                this.addItem(i);
+            }
+        }
+    }
     public void addBreakdownType(BreakdownTypes types){
         if(!(breakdownTypesList.contains(types))){
             breakdownTypesList.add(types);
@@ -114,14 +140,14 @@ public class Repair {
     public String toString() {
         return "Repair{" +
                 "id=" + id +
-                ", date=" + date +
-                ", description='" + description + '\'' +
-                ", effort=" + effort +
-                ", vehicle=" + vehicle +
-                ", mechanicsList=" + mechanicsList +
-                ", itemsList=" + itemsList +
-                ", breakdownTypesList=" + breakdownTypesList +
-                ", payment=" + payment +
+                ",\n date=" + date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
+                ",\n description='" + description + '\'' +
+                ",\n effort=" + effort +
+                ",\n vehicle=" + vehicle +
+                ",\n mechanics=" + mechanicsList +
+                ",\n items=" + itemsList +
+                ",\n breakdownTypes=" + breakdownTypesList +
+                ",\n payment=" + payment +
                 '}';
         //item tiene un atributo Repair. En el toString(),
         // solo llama el Repair.Id, para evitar problemas

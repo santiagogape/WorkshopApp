@@ -7,6 +7,7 @@ public class RepairManager {
     private final List<SparePart> sparePartsList;
     private final List<Mechanic> mechanicsList;
     private final List<Vehicle> vehiclesList;
+    private static int vehicleCount = 0;
 
     public RepairManager() {
         this.sparePartsList = new ArrayList<>();
@@ -58,6 +59,7 @@ public class RepairManager {
         Vehicle vehicle = new Vehicle(make, model, plate, owner);
         if(vehiclesList.isEmpty()){
             vehiclesList.add(vehicle);
+            vehicleCount++;
         }
         boolean b =false;
         for(int i =0; i<vehiclesList.size();i++){
@@ -68,6 +70,7 @@ public class RepairManager {
         }
         if (!b){
             vehiclesList.add(vehicle);
+            vehicleCount++;
         }
     }
     public void addMechanic(String name, String surname){
@@ -93,12 +96,23 @@ public class RepairManager {
     }
     public void removeVehicle(Vehicle vehicle){
         vehiclesList.remove(vehicle);
+        vehicleCount--;
+
     }
     public void removeMechanic(Mechanic mechanic){
         mechanicsList.remove(mechanic);
     }
 
     //reparacion
-    //TODO repair()
+    public void repair(String description, int effort, Vehicle vehicle,
+                       List<Mechanic> mechanicsList, List<SparePart> sparePartList,
+                       List<Integer> quantities, List<BreakdownTypes> breakdownTypesList){
+        Repair repair = new Repair( description, effort, vehicle, mechanicsList,
+                sparePartList, quantities, breakdownTypesList);
+    }
+
+    public int getVehicleCount() {
+        return vehicleCount;
+    }
 
 }

@@ -1,5 +1,6 @@
 package org.ulpgc.is1.model;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
@@ -32,7 +33,7 @@ public class Payment {
     @Override
     public String toString() {
         return "Payment{" +
-                "date=" + date +
+                "date=" + date.format(DateTimeFormatter.ofPattern("dd-MM-yyyy")) +
                 ", amount=" + amount +
                 '}';
     }
